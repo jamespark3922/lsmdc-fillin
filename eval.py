@@ -15,10 +15,13 @@ import torch
 # Input arguments and options
 parser = argparse.ArgumentParser()
 # Input paths
-parser.add_argument('--g_model_path', type=str, default='',
+parser.add_argument('--g_model_path', type=str, required=True,
                 help='path to generator to evaluate')
-parser.add_argument('--infos_path', type=str, default='',
+parser.add_argument('--infos_path', type=str, required=True,
                 help='path to infos to evaluate')
+parser.add_argument('--caption_path', type=str,
+                help='caption you wish to fill in')
+
 # Basic options
 parser.add_argument('--split', type=str, default='val',
                 help='which split to use: val|test')
