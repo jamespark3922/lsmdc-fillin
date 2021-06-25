@@ -25,6 +25,9 @@ pip install -r requirements.txt
 
 ## Preprocessed Data and Features
 
+Download Task2 annotations from the [LSMDC download page](https://sites.google.com/site/describingmovies/download?authuser=0). You will need to consult the organizer to have access to the dataset.
+Save the file in your `$TASK2_ANNOTATION` directory.
+
 Videos, caption annotations with character information, and features are available in the [LSMDC project page](https://sites.google.com/site/describingmovies/download?authuser=0).
 For simplicity, we have also included features and preprocessed data to reproduce our code.
 All you need to do is run:
@@ -33,18 +36,25 @@ bash get_data_and_features.sh
 ```
 This will create `data` directory that contains the i3d features `i3d`, preprocessed json files, face clusters, and bert gender embeddings (described in paper) in `fillin_data`. We used the [Facenet](https://github.com/davidsandberg/facenet) repository to detect and cluster the faces. More details on extracting the face features will be added later.
 
-After running the code, the `data` folder has the following files:
+Then, run the following to do further preprocessing:
+```
+python prepro_vocab.py --input_path $TASK2_ANNOTATION --output_path data/fillin_data
+```
+
+After running the above code, the `data` folder has the following files:
 ```
 data/
 data/i3d                                                (i3d features for each clip)
-data/fillin_data 
-data/fillin_data/LSMDC16_info_fillin_new.json           (preprocessed annotation with clip and character information.)
-data/fillin_data/LSMDC16_info_fillin_new_augmented.json (same as above but with data augmentation in training.)
+data/fillin_data
+data/fillin_data/LSMDC16_info_fillin_augmented.json     (preprocessed annotation with clip and character information with training time data augmentation.)
 data/fillin_data/LSMDC16_labels_fillin.h5               (caption label information)
 data/fillin_data/LSMDC16_annos_gender.json              (gender information for each clip)
 data/fillin_data/bert_text_gender_embedding             (bert trained to do gender classification that will be used to encode the sentence)
 data/fillin_data/face_features_rgb_mtcnn_cluster        (face clusters)
 ```
+
+
+
 ## Training
 Before training, you might want to create a separate directory to save your experiments and model checkpoints.
 ```
