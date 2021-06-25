@@ -44,13 +44,13 @@ python prepro_vocab.py --input_path $TASK2_ANNOTATION --output_path data/fillin_
 After running the above code, the `data` folder has the following files:
 ```
 data/
-data/i3d                                                (i3d features for each clip)
+data/i3d                                                    (i3d features for each clip)
 data/fillin_data
-data/fillin_data/LSMDC16_info_fillin_augmented.json     (preprocessed annotation with clip and character information with training time data augmentation.)
-data/fillin_data/LSMDC16_labels_fillin.h5               (caption label information)
-data/fillin_data/LSMDC16_annos_gender.json              (gender information for each clip)
-data/fillin_data/bert_text_gender_embedding             (bert trained to do gender classification that will be used to encode the sentence)
-data/fillin_data/face_features_rgb_mtcnn_cluster        (face clusters)
+data/fillin_data/LSMDC16_info_fillin_new_augmented.json     (preprocessed annotation with clip and character information with training time data augmentation.)
+data/fillin_data/LSMDC16_labels_fillin_new_augmented.h5     (caption label information)
+data/fillin_data/LSMDC16_annos_gender.json                  (gender information for each clip)
+data/fillin_data/bert_text_gender_embedding                 (bert trained to do gender classification that will be used to encode the sentence)
+data/fillin_data/face_features_rgb_mtcnn_cluster            (face clusters)
 ```
 
 
@@ -66,7 +66,7 @@ Then, you run the following code to use **data augmentation** trick, **gender lo
 python train.py --input_json data/fillin_data/LSMDC16_info_fillin_new_augmented.json \
                 --input_fc_dir data/i3d/ \
                 --input_face_dir data/fillin_data/face_features_rgb_mtcnn_cluster/ \
-                --input_label_h5 data/fillin_data/LSMDC16_labels_fillin.h5 \
+                --input_label_h5 data/fillin_data/LSMDC16_labels_fillin_new_augmented.h5 \
                 --clip_gender_json data/fillin_data/LSMDC16_annos_gender.json \
                 --use_bert_embedding --bert_embedding_dir data/fillin_data/bert_text_gender_embedding/ \
                 --learning_rate 5e-5  --gender_loss 0.2 --batch_size 64 \
@@ -119,7 +119,7 @@ python eval.py --infos_path fillin2_transformer_memory9_mtcnn_cluster_gender0.2_
                --input_json data/fillin_data/LSMDC16_info_fillin_new_augmented.json \
                --input_fc_dir data/i3d/ \
                --input_face_dir data/fillin_data/face_features_rgb_mtcnn_cluster/ \
-               --input_label_h5 data/fillin_data/LSMDC16_labels_fillin.h5 \
+               --input_label_h5 data/fillin_data/LSMDC16_labels_fillin_new_augmented.h5 \
                --clip_gender_json data/fillin_data/LSMDC16_annos_gender.json \
                --bert_embedding_dir data/fillin_data/bert_text_gender_embedding \
                --id fillin2_transformer_memory9_mtcnn_cluster_gender0.2_bert_gender_sent_emb_bs64_augmented_new_no_img
