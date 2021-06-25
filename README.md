@@ -1,6 +1,6 @@
 # Identity-Aware Multi-Sentence Video Description (ECCV 2020)
 
-Repo for [Identity-Aware Multi-Sentence Video Description](https://arxiv.org/abs/2008.09791). (Project website: [LSMDC2019](https://sites.google.com/site/describingmovies/lsmdc-2019)) <br>
+Repo for [Identity-Aware Multi-Sentence Video Description](https://arxiv.org/abs/2008.09791). (Baseline for [LSMDC 2021](https://sites.google.com/site/describingmovies/lsmdc-2021?authuser=0)) <br>
 
 ## Fill in Identities within a set of Clips
 
@@ -82,11 +82,16 @@ python eval_characters.py --subission character_eval/characters/character_val_{$
 ```
 
 ### Test Set
-If you want to run on test set, set `--split test` in `eval.py` which will not run the evaluation code but give the prediction in the end in `character_eval/characters/character_{$eval_id}.csv` (note that the *val* prefix is rmoved).
+If you want to run on test set, set `--split test` in `eval.py` which will not run the evaluation code but give the prediction in the end in `character_eval/characters/character_{$eval_id}.csv` (note that the *val* prefix is removed).
 
 #### Leaderboard
-We use codalab for our leaderboard. Here is the [codalab competition](https://competitions.codalab.org/competitions/20668).
-You can find more info on the [LSMD proejct website](https://sites.google.com/site/describingmovies/lsmdc-2019/challenge-details?authuser=0).
+We use codalab for our leaderboard. Here is the [codalab competition] for Task 2 (Fill-in the Characters) challenge(https://competitions.codalab.org/competitions/32769).
+
+Other relevant challenges are:
+- [Task 1](https://competitions.codalab.org/competitions/32767) (Multi-Sentence Video Description)
+- [Task 3](https://competitions.codalab.org/competitions/32914) (Multi-Sentence Video Description with Characters)
+
+You can find more info on the [LSMDC proejct website](https://sites.google.com/site/describingmovies/lsmdc-2021?authuser=0).
 
 ## Pretrained Checkpoints
 We share the pretrained checkpoints used in the paper. This is the Last row of Table 2 in the paper.
