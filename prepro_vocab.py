@@ -180,6 +180,7 @@ def main(params):
     wtoi['<sos>'] = 1
     itow[1] = '<sos>'
 
+    output_path = params['output_path']
     out = {}
     out['ix_to_word'] = itow
     out['word_to_ix'] = wtoi
@@ -191,19 +192,20 @@ def main(params):
     out['groups'] = groups
     out['movie_ids'] = movie_ids
     out['max_seq_length'] = params['max_length']
-    json.dump(out, open('LSMDC16_info_fillin_new_augmented.json', 'w'))
+    json.dump(out, open(os.path.join(output_path,'LSMDC16_info_fillin_new_augmented.json'), 'w'))
 
     labels, ll = build_label(params,videos,wtoi)
-    f_lb = h5py.File("LSMDC16_labels_fillin_new_augmented.h5","w")
+    f_lb = h5py.File(os.path.join(output_path,"LSMDC16_labels_fillin_new_augmented.h5"),"w")
     f_lb.create_dataset("labels", dtype='uint32', data=labels)
     f_lb.create_dataset("label_length", dtype='uint32', data=ll)
 
+    print(f'saved output to `{output_path}`')
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
 
     # input json
-    parser.add_argument('--input_path', type=str, default='/home/jspark/lsmdc',
+    parser.add_argument('--input_path', type=str, 
                         help='directory containing csv files')
     parser.add_argument('--word_count_threshold', default=1, type=int,
                         help='only words that occur more than this number of times will be put in vocab')
@@ -211,6 +213,8 @@ if __name__ == "__main__":
                         help='max length of a caption, in number of words. captions longer than this get clipped.')
     parser.add_argument('--group_by', default=5, type=int,
                         help='group # of clips as one video')
+    parser.add_argument('--output_path', type=str, required=True,
+                        help='path to save your output')
     args = parser.parse_args()
     params = vars(args)  # convert to ordinary dict
     main(params)
