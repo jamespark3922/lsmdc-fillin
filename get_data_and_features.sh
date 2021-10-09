@@ -18,7 +18,7 @@ echo
 if [ ! -d "data/fillin_data" ]
 then
 	echo "Downloading preprocessed data and face cluster features..."
-	wget https://storage.googleapis.com/jamesp/lsmdc/fillin_data.zip -nv -c --show-progress
+	wget https://storage.googleapis.com/ai2-jamesp-public/lsmdc/fillin_data.zip -nv -c --show-progress
 	echo "Extracting data... in data/"
 	unzip fillin_data.zip -d data
 	echo "Saved at data/fillin_data/"
