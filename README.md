@@ -106,7 +106,7 @@ You can find more info on the [LSMDC proejct website](https://sites.google.com/s
 ## Pretrained Checkpoints
 We share the pretrained checkpoints used in the paper. This is the Last row of Table 2 in the paper.
 ```
-wget https://storage.googleapis.com/jamesp/lsmdc/fillin2_transformer_memory9_mtcnn_cluster_gender0.2_bert_gender_sent_emb_bs64_augmented_new_no_img.zip
+wget https://storage.googleapis.com/ai2-jamesp-public/lsmdc/fillin2_transformer_memory9_mtcnn_cluster_gender0.2_bert_gender_sent_emb_bs64_augmented_new_no_img.zip
 unzip fillin2_transformer_memory9_mtcnn_cluster_gender0.2_bert_gender_sent_emb_bs64_augmented_new_no_img.zip
 ```
 
@@ -136,7 +136,10 @@ The numbers should be
 See the paper for more details about the evaluation. Overall, we use a combination of *Class Acc* and *Instance Acc* to measure the performance.
 
 ## Filling in Non-GT captions
-If you wish to fill in characters for generated captions, first download this [caption](https://storage.googleapis.com/jamesp/lsmdc/caption_val_i3d_resnet_someone_context_greedy.json) and parse the generated captions into the same format.
+If you wish to fill in characters for generated captions, you can start with this caption with SOMEONE ids and parse them into appropriate format.
+```
+wget https://storage.googleapis.com/ai2-jamesp-public/lsmdc/caption_val_i3d_resnet_someone_context_greedy.json
+```
 Then, use `--caption_path` option in `eval.py` to fill in the captions.
 
 #### Bibtex
