@@ -92,7 +92,7 @@ class FillInCharacter(nn.Module):
         masks = slot_masks[:,:slot_size+1].bool()
 
         if self.classifier_type == 'transformer':
-            transformer_masks = masks ^ 1
+            transformer_masks = ~masks
             src_mask = self.transformer.generate_square_subsequent_mask(masks.size(1)-1).cuda()
             tgt_mask = self.transformer.generate_square_subsequent_mask(masks.size(1)).cuda()
             logits = self.transformer(memory.transpose(0, 1), character_embed.transpose(0, 1),
@@ -132,7 +132,7 @@ class FillInCharacter(nn.Module):
         masks = slot_masks[:, :slot_size + 1].bool()
 
         if self.classifier_type == 'transformer':
-            transformer_masks = masks ^ 1
+            transformer_masks = ~masks
             src_mask = self.transformer.generate_square_subsequent_mask(masks.size(1) - 1).cuda()
             enc_output = self.transformer.encoder(memory.transpose(0, 1),
                                                   mask=src_mask,

@@ -182,7 +182,7 @@ def train(opt):
         #########################
         # Evaluate & Save Model #
         #########################
-        if True or wrapped:
+        if wrapped:
             # evaluate model on dev set
             eval_kwargs = {'split': 'val',
                            'dataset': opt.input_json,
