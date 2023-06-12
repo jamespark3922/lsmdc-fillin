@@ -1,4 +1,4 @@
 torch==1.4.0
 tensorboardX==1.8
 h5py==2.9.0
-transformers==2.4.1
+transformers==4.30.0
